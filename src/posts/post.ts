@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
 
-export type PostDocument = Post & Document;
+export type PostDocument = HydratedDocument<Post>;
 
-@Schema({ collection: 'posts', timestamps: true })
+@Schema({ collection: 'posts', autoCreate: true, timestamps: true })
 export class Post {
   @Prop({ required: true })
   title: string;
