@@ -1,31 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { PostsModule } from './posts/posts.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    // MongooseModule.forRootAsync({
-    //   imports: [ConfigModule],
-    //   useFactory: async (configService: ConfigService) => ({
-    //     uri: configService.get<string>('DATABASE_URI'),
-    //     // user: configService.get<string>('DATABASE_USER'),
-    //     // pass: configService.get<string>('DATABASE_PASSWORD'),
-    //   }),
-    //   inject: [ConfigService],
-    // }),
-    // MongooseModule.forRoot('mongodb://localhost/feed'),
-    MongooseModule.forRoot(process.env.DATABASE_URI, {
-      // dbName: process.env.DATABASE_NAME,
-      // auth: {
-      //   username: process.env.DATABASE_USER,
-      //   password: process.env.DATABASE_PASS,
-      // },
-    }),
+    MongooseModule.forRoot(process.env.DATABASE_URI),
     PostsModule,
+    StatisticsModule,
   ],
   controllers: [],
   providers: [],

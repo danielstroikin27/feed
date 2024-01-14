@@ -12,8 +12,12 @@ export class PostsController {
   }
 
   @Get()
-  getPosts(@Query('start') start: number, @Query('limit') limit: number) {
-    return this.postsService.getPosts(start, limit);
+  getPosts(
+    @Query('start') start: number,
+    @Query('limit') limit: number,
+    @Query('created-since') createdSince: string,
+  ) {
+    return this.postsService.getPosts(start, limit, createdSince);
   }
 
   @Get('/number')
