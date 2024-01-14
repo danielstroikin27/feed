@@ -1,6 +1,8 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { StatisticsService } from './statistics.service';
 import { PostsService } from '../posts/posts.service';
+import { ActionAverageRuntime } from './dto/action-average-runtime';
+import { UserPostCount } from 'src/posts/dto/user-post-count';
 
 @Controller('statistics')
 export class StatisticsController {
@@ -11,16 +13,16 @@ export class StatisticsController {
   ) {}
 
   @Get('/topcreators')
-  getTopCreators(@Query('limit') limit: number): Promise<string[]> {
+  getTopCreators(@Query('limit') limit: number): Promise<UserPostCount[]> {
     return this.postsService.getTopCreators(
-      limit || process?.env.QUERY_LIMIT_DEFAULT
-        ? parseInt(process?.env.QUERY_LIMIT_DEFAULT)
+      limit || process?.env?.QUERY_LIMIT_DEFAULT
+        ? parseInt(process?.env?.QUERY_LIMIT_DEFAULT)
         : StatisticsController.QUERY_LIMIT_DEFAULT,
     );
   }
 
   @Get('/runtimes')
-  getRuntimes() {
+  getRuntimes(): Promise<ActionAverageRuntime[]> {
     return this.statisticsService.getAverageRuntime();
   }
 }

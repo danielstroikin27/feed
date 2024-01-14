@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Statistics, StatisticsDocument } from './statistics';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { ActionAverageRuntime } from './dto/action-average-runtime';
 
 @Injectable()
 export class StatisticsService {
@@ -12,10 +13,10 @@ export class StatisticsService {
   ) {}
 
   async recordRuntime(action: string, runtime: number): Promise<void> {
-    await this.statisticsModel.create({ action, runtime });
+    this.statisticsModel.create({ action, runtime });
   }
 
-  async getAverageRuntime(): Promise<any> {
+  async getAverageRuntime(): Promise<ActionAverageRuntime[]> {
     return this.statisticsModel
       .aggregate([
         {

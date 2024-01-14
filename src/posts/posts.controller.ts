@@ -8,19 +8,19 @@ import {
 } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post-dto';
 import { PostsService } from './posts.service';
-import { RuntimMetricInterceptor } from 'src/interceptors/runtime-metric.interceptor';
+import { RuntimMetricInterceptor as RuntimeMetricInterceptor } from '../interceptors/runtime-metric.interceptor';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @UseInterceptors(RuntimMetricInterceptor)
+  @UseInterceptors(RuntimeMetricInterceptor)
   @Post()
-  create(@Body() createPostDto: CreatePostDto) {
+  createPost(@Body() createPostDto: CreatePostDto) {
     return this.postsService.create(createPostDto);
   }
 
-  @UseInterceptors(RuntimMetricInterceptor)
+  @UseInterceptors(RuntimeMetricInterceptor)
   @Get()
   getPosts(
     @Query('start') start: number,

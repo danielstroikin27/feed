@@ -3,13 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Post, PostDocument } from './post';
 import { CreatePostDto } from './dto/create-post-dto';
+import { UserPostCount } from './dto/user-post-count';
 
 @Injectable()
 export class PostsService {
   @InjectModel(Post.name) private postModel: Model<PostDocument>;
 
   async create(createPostDto: CreatePostDto): Promise<Post> {
-    return await this.postModel.create(createPostDto);
+    return this.postModel.create(createPostDto);
   }
 
   async getPosts(
@@ -21,7 +22,7 @@ export class PostsService {
       ? { createdAt: { $gte: new Date(createdSince) } }
       : undefined;
 
-    return await this.postModel
+    return this.postModel
       .find(sinceSomeDateQuery)
       .skip(start)
       .limit(limit)
@@ -32,7 +33,7 @@ export class PostsService {
     return this.postModel.countDocuments().exec();
   }
 
-  async getTopCreators(limit: number): Promise<any[]> {
+  async getTopCreators(limit: number): Promise<UserPostCount[]> {
     return this.postModel
       .aggregate([
         {
