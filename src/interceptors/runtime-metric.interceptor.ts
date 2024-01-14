@@ -31,14 +31,14 @@ export class RuntimMetricInterceptor implements NestInterceptor {
 
   private getNameOfAction(context: ExecutionContext) {
     const method = context.switchToHttp().getRequest().method;
-    const url = context.switchToHttp().getRequest().originalUrl;
+    const url = context.switchToHttp().getRequest().route.path;
     const key = method + '-' + url.substring(1);
 
     if (this.map.has(key)) return this.map.get(key);
 
     const action = endpointsToIntercept.filter(
       (endpoint) => endpoint.path === url && endpoint.method === method,
-    )[0].action;
+    )[0]?.action;
 
     if (!action) this.map.set(key, key);
     else this.map.set(key, action);

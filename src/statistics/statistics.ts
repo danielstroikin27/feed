@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type StatisticsDocument = HydratedDocument<Statistics>;
+export type ActionRuntimeDocument = HydratedDocument<ActionRuntime>;
 
 @Schema({ collection: 'statistics', autoCreate: true })
-export class Statistics {
+export class ActionRuntime {
   @Prop({ required: true })
   action: string;
 
@@ -12,4 +12,4 @@ export class Statistics {
   runtime: number;
 }
 
-export const StatisticsSchema = SchemaFactory.createForClass(Statistics);
+export const StatisticsSchema = SchemaFactory.createForClass(ActionRuntime);

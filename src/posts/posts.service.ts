@@ -49,6 +49,6 @@ export class PostsService {
           $limit: limit,
         },
       ])
-      .exec();
+      ?.exec();
   }
 }
