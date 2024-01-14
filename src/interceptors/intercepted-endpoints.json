@@ -1,0 +1,12 @@
+[
+  {
+    "method": "POST",
+    "path": "/posts",
+    "action": "createPost"
+  },
+  {
+    "method": "GET",
+    "path": "/posts",
+    "action": "getPosts"
+  }
+]
