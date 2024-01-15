@@ -58,7 +58,7 @@ In order to ease the setup I'm using docker compose for the DB and Cache.
 
 ## Documentation
 
-Your'e welcome to examine the documentation at [OPEN_API_URL](localhost:3000)
+Your'e welcome to examine the documentation at [localhost:3000]
 right after you have run the application.
 ## Running the app
 

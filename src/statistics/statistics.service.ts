@@ -1,4 +1,3 @@
-// statistics/statistics.service.ts
 import { Injectable } from '@nestjs/common';
 import { ActionRuntime, ActionRuntimeDocument } from './objects/statistics';
 import { InjectModel } from '@nestjs/mongoose';
