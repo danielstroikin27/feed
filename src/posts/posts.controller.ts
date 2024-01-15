@@ -12,6 +12,7 @@ import { CreatePostDto } from './objects/dto/create-post-dto';
 import { PostsService } from './posts.service';
 import { RuntimMetricInterceptor as RuntimeMetricInterceptor } from '../interceptors/runtime-metric.interceptor';
 import { CacheInterceptor } from '@nestjs/cache-manager';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('posts')
 export class PostsController {
@@ -26,6 +27,9 @@ export class PostsController {
   @UseInterceptors(RuntimeMetricInterceptor)
   @UseInterceptors(CacheInterceptor)
   @Get()
+  @ApiQuery({ name: 'limit', required: false })
+  @ApiQuery({ name: 'start', required: false })
+  @ApiQuery({ name: 'created-since', required: false })
   getPosts(
     @Query(
       'start',

@@ -9,6 +9,7 @@ import { StatisticsService } from './statistics.service';
 import { PostsService } from '../posts/posts.service';
 import { ActionAverageRuntime } from './objects/action-average-runtime';
 import { UserPostCount } from '../posts/objects/user-post-count';
+import { ApiQuery } from '@nestjs/swagger';
 
 const QUERY_LIMIT_DEFAULT = Number(process?.env?.QUERY_LIMIT_DEFAULT) || 10;
 
@@ -19,6 +20,7 @@ export class StatisticsController {
     private readonly postsService: PostsService,
   ) {}
 
+  @ApiQuery({ name: 'limit', required: false })
   @Get('/topcreators')
   getTopCreators(
     @Query(
