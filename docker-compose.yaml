@@ -1,6 +1,21 @@
 version: '3.9'
 
 services:
+# start the server
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend:/app/backend
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+      - redis
+
   # start the mongodb service as container
   mongodb:
     image: mongo
@@ -8,6 +23,9 @@ services:
       - '27017:27017'
     volumes:
       - mongo_data:/data/db
+    environment:
+      - MONGODB_DATABASE=feed
+
   # start the redis service as container
   redis:
     image: redis

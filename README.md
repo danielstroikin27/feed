@@ -50,6 +50,7 @@ but for some performance we would still want to lower the latency of requests.<b
 How'd we do that? Caching would be a great way to improve the app's performance and to tackle high read rate.<br>
 <br>
 **_Note_**: The cache might interfere with the "desired" functionality of the statistics(the GET /posts is cached).
+*_Note_*: Wanted to add a load balancer like Nginx to add more availability but due to schedule i abandoned the idea. <br> 
 
 ### Additional
 
@@ -59,6 +60,13 @@ In order to ease the setup I'm using docker compose for the DB and Cache.
 
 Your'e welcome to examine the documentation at [OPEN API URL]
 right after you have run the application.
+## Running the app
+
+```bash
+# Run all the components
+$ docker compose up -d
+```
+### 👇 Or if you have redis and MongoDB installed and running proceed to the next 2 steps 👇
 
 ## Installation
 
@@ -69,9 +77,6 @@ $ npm install
 ## Running the app
 
 ```bash
-#setup database and redis
-$ docker compose up -d
-
 #After the containers are created - continue
 # development
 $ npm run start
