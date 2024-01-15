@@ -1,64 +1,30 @@
-# Simple Feed System
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
+
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
+
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-The system is a REST API server that provides CREATE and READ operations for feed of posts 🏣.
-
-## Objective
-
-The Goal of the project as mentioned above is to provide the next functions:
-
-- Create a post
-- Get posts ordered by creation date and filtered by parameters as start and limit
-- Get number of posts
-- Get top creators
-- Get average runtime for first two operations
-  <br><br>
-  Also there was a requirement for the server to be able to withstand high amount of requests.
-
-## Considerations and system overview
-
-#### Language
-
-I chose **NestJS** because it allowed me to quickly develop the functionality of the server.
-<br>The API, testing, database integration and useful middleware for validations,
-specifically the runtime interceptors for the metrics gathering.<br><br>
-
-#### Database
-
-The Database of my choice was **MongoDB**.<br>
-In the case of such a small application, there wouldn't be much difference between RDMBS and NoSQL databases.<br>
-PostgreSQL for example could be used(and would even be able to scale horizontally) just fine for this task.
-_But_ - MongoDB was a good choice for:<br>
-
-- Simplicity for quering ,specifically aggregations for metrics gathering in our case.
-- Ability to scale horizontally(sharding or replication)
-- Potentially querying big chunks of data(GET /posts for example)
-- ...
-
-#### Design
-
-![Diagram](Diagram.png)
-
-The application is a single NestJS service.<br><br>
-I chose to keep it simple and to use caching via **Redis** for boosting performance.<br><br>
-I thought about implementing CQRS, event sourcing, or even splitting modules into different microservices and setup MQ.<br>
-For complex read and write operations with different optimization requirements, CQRS might be a good fit. <br>
-That would definitely tackle the problem of scale read and write operations independently.<br><br>
-However, I think it would be an overkill for a small REST API with just a "post" entity and simple operations,<br>
-but for some performance we would still want to lower the latency of requests.<br>
-How'd we do that? Caching would be a great way to improve the app's performance and to tackle high read rate.<br>
-<br>
-**_Note_**: The cache might interfere with the "desired" functionality of the statistics(the GET /posts is cached).
-
-### Additional
-
-In order to ease the setup I'm using docker compose for the DB and Cache.
-
-## Documentation
-
-Your'e welcome to examine the documentation at [OPEN API URL]
-right after you have run the application.
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
@@ -69,10 +35,6 @@ $ npm install
 ## Running the app
 
 ```bash
-#setup database and redis
-$ docker compose up -d
-
-#After the containers are created - continue
 # development
 $ npm run start
 
@@ -82,7 +44,6 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-Instructions for running the project. Include details on configuration, environment variables, or any other relevant information.
 
 ## Test
 
@@ -96,6 +57,17 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
- I also added Postman collection tests which i've used, maybe you'll find it helpful too.
 
- [OPEN API URL]: localhost:3000/api
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](LICENSE).
