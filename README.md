@@ -66,8 +66,9 @@ right after you have run the application.
 # Run all the components
 $ docker compose up -d
 ```
-### 👇 Or if you have redis and MongoDB installed and running proceed to the next 2 steps 👇
-
+### 👇 If you have Redis and MongoDB installed and running proceed to the next 2 steps 👇
+*Note*: Since there was no requirement for auth, the DB is running without authentication as well.<br>
+may lead to collisions if you have already a running MongoDB instance with authentication(didn't test it).
 ## Installation
 
 ```bash
