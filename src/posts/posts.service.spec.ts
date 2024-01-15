@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { PostsService } from './posts.service';
-import { Post, PostDocument } from './post';
+import { Post, PostDocument } from './objects/post';
 import { Model } from 'mongoose';
 import { getModelToken } from '@nestjs/mongoose';
 

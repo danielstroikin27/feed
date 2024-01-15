@@ -3,8 +3,7 @@ import { PostsController } from './posts.controller';
 import { StatisticsService } from '../statistics/statistics.service';
 import { PostsService } from './posts.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { Post, PostDocument } from './post';
-import { Model } from 'mongoose';
+import { Post } from './objects/post';
 
 let controller: PostsController;
 let service: PostsService;

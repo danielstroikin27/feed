@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { StatisticsController } from './statistics.controller';
-import { ActionRuntime } from './statistics';
+import { ActionRuntime } from './objects/statistics';
 import { getModelToken } from '@nestjs/mongoose';
 import { StatisticsService } from './statistics.service';
 import { PostsService } from '../posts/posts.service';
-import { Post, PostDocument } from '../posts/post';
+import { Post, PostDocument } from '../posts/objects/post';
 import { Model } from 'mongoose';
 
 let controller: StatisticsController;

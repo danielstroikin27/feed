@@ -1,8 +1,14 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpStatus,
+  ParseIntPipe,
+  Query,
+} from '@nestjs/common';
 import { StatisticsService } from './statistics.service';
 import { PostsService } from '../posts/posts.service';
-import { ActionAverageRuntime } from './dto/action-average-runtime';
-import { UserPostCount } from 'src/posts/dto/user-post-count';
+import { ActionAverageRuntime } from './objects/action-average-runtime';
+import { UserPostCount } from '../posts/objects/user-post-count';
 
 const QUERY_LIMIT_DEFAULT = Number(process?.env?.QUERY_LIMIT_DEFAULT) || 10;
 
@@ -14,10 +20,17 @@ export class StatisticsController {
   ) {}
 
   @Get('/topcreators')
-  getTopCreators(@Query('limit') limit: number): Promise<UserPostCount[]> {
-    return this.postsService.getTopCreators(
-      Number(limit) || QUERY_LIMIT_DEFAULT,
-    );
+  getTopCreators(
+    @Query(
+      'limit',
+      new ParseIntPipe({
+        errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
+        optional: true,
+      }),
+    )
+    limit: number,
+  ): Promise<UserPostCount[]> {
+    return this.postsService.getTopCreators(limit || QUERY_LIMIT_DEFAULT);
   }
 
   @Get('/runtimes')

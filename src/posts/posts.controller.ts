@@ -2,13 +2,16 @@ import {
   Body,
   Controller,
   Get,
+  HttpStatus,
+  ParseIntPipe,
   Post,
   Query,
   UseInterceptors,
 } from '@nestjs/common';
-import { CreatePostDto } from './dto/create-post-dto';
+import { CreatePostDto } from './objects/dto/create-post-dto';
 import { PostsService } from './posts.service';
 import { RuntimMetricInterceptor as RuntimeMetricInterceptor } from '../interceptors/runtime-metric.interceptor';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller('posts')
 export class PostsController {
@@ -21,10 +24,25 @@ export class PostsController {
   }
 
   @UseInterceptors(RuntimeMetricInterceptor)
+  @UseInterceptors(CacheInterceptor)
   @Get()
   getPosts(
-    @Query('start') start: number,
-    @Query('limit') limit: number,
+    @Query(
+      'start',
+      new ParseIntPipe({
+        errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
+        optional: true,
+      }),
+    )
+    start: number,
+    @Query(
+      'limit',
+      new ParseIntPipe({
+        errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
+        optional: true,
+      }),
+    )
+    limit: number,
     @Query('created-since') createdSince: string,
   ) {
     return this.postsService.getPosts(start, limit, createdSince);

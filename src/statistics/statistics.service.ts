@@ -1,9 +1,9 @@
 // statistics/statistics.service.ts
 import { Injectable } from '@nestjs/common';
-import { ActionRuntime, ActionRuntimeDocument } from './statistics';
+import { ActionRuntime, ActionRuntimeDocument } from './objects/statistics';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ActionAverageRuntime } from './dto/action-average-runtime';
+import { ActionAverageRuntime } from './objects/action-average-runtime';
 
 @Injectable()
 export class StatisticsService {

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { StatisticsService } from './statistics.service';
 import { MongooseModule, getModelToken } from '@nestjs/mongoose';
-import { ActionRuntime, ActionRuntimeDocument, StatisticsSchema } from './statistics';
+import { ActionRuntime, ActionRuntimeDocument, StatisticsSchema } from './objects/statistics';
 import { PostsModule } from '../posts/posts.module';
 import { forwardRef } from '@nestjs/common';
 import { Model } from 'mongoose';
