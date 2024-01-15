@@ -1,4 +1,4 @@
-# Simple Feed System
+#  📝 Simple Feed System 
 
 ## Description
 
@@ -28,13 +28,13 @@ specifically the runtime interceptors for the metrics gathering.<br><br>
 
 The Database of my choice was **MongoDB**.<br>
 In the case of such a small application, there wouldn't be much difference between RDMBS and NoSQL databases.<br>
-PostgreSQL for example could be used(and would even be able to scale horizontally) just fine for this task.
-_But_ - MongoDB was a good choice for:<br>
+PostgreSQL for example could be used(and would even be able to scale horizontally) just fine for this task.<br>
+_But_  - MongoDB was a good choice for:<br>
 
 - Simplicity for quering ,specifically aggregations for metrics gathering in our case.
 - Ability to scale horizontally(sharding or replication)
 - Potentially querying big chunks of data(GET /posts for example)
-- ...
+<br> 
 
 #### Design
 
@@ -85,6 +85,7 @@ $ npm run start:prod
 Instructions for running the project. Include details on configuration, environment variables, or any other relevant information.
 
 ## Test
+ #### **I also added Postman collection tests which i've used, maybe you'll find it helpful too. [POSTMAN_FILE] **
 
 ```bash
 # unit tests
@@ -96,6 +97,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
- I also added Postman collection tests which i've used, maybe you'll find it helpful too.
 
  [OPEN API URL]: localhost:3000/api
+ [POSTMAN_FILE]: feed-api-calls.postman_collection.json
